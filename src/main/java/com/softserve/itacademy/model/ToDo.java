@@ -13,7 +13,6 @@ import java.util.Set;
 @Entity
 @Table(name = "todos")
 public class ToDo {
-//TODO
 
     @Id
     @GeneratedValue(generator = "sequence-generator")
@@ -42,7 +41,7 @@ public class ToDo {
     private Set<User> users;
 
     @OneToMany(mappedBy = "todo")
-    private List<Task> tasks;
+    private Set<Task> tasks;
 
     public ToDo() {
         this.created_at = LocalDateTime.now();
@@ -60,7 +59,7 @@ public class ToDo {
         return created_at;
     }
 
-    public List<Task> getTasks() {
+    public Set<Task> getTasks() {
         return tasks;
     }
 
@@ -84,7 +83,7 @@ public class ToDo {
         this.created_at = created_at;
     }
 
-    public void setTasks(List<Task> tasks) {
+    public void setTasks(Set<Task> tasks) {
         this.tasks = tasks;
     }
 
