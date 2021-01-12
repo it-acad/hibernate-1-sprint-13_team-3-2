@@ -38,10 +38,11 @@ public class ToDo {
     @JoinColumn(name = "id")
     private User owner_id;
 
-    @OneToMany(mappedBy = "todos")
+    @ManyToMany(mappedBy = "todos")
     private List<Task> tasks;
 
     public ToDo() {
+        this.created_at = LocalDateTime.now();
     }
 
     public int getId() {
