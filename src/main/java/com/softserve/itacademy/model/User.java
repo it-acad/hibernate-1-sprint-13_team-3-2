@@ -49,6 +49,8 @@ public class User  {
     @JoinColumn(name = "id")
     private Role role_id;
 
+    @OneToMany(mappedBy = "user")
+    private List<ToDo> toDOList;
     public User() {
     }
 
