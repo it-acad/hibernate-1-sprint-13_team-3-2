@@ -21,7 +21,7 @@ public class Task {
             strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
             parameters = {
                     @Parameter(name = "sequence_name", value = "state_sequence"),
-                    @Parameter(name = "initial_value", value = "10"),
+                    @Parameter(name = "initial_value", value = "20"),
                     @Parameter(name = "increment_size", value = "1")
             }
     )

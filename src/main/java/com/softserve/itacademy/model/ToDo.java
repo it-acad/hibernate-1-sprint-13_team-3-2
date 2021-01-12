@@ -2,7 +2,7 @@ package com.softserve.itacademy.model;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
-
+import org.hibernate.annotations.Parameter;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -21,9 +21,9 @@ public class ToDo {
             name = "sequence-generator",
             strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
             parameters = {
-                    @org.hibernate.annotations.Parameter(name = "sequence_name", value = "ToDo_sequence"),
-                    @org.hibernate.annotations.Parameter(name = "initial_value", value = "1"),
-                    @org.hibernate.annotations.Parameter(name = "increment_size", value = "1")
+                    @Parameter(name = "sequence_name", value = "ToDo_sequence"),
+                    @Parameter(name = "initial_value", value = "20"),
+                    @Parameter(name = "increment_size", value = "1")
             }
     )
     private int id;
@@ -35,10 +35,13 @@ public class ToDo {
     private LocalDateTime created_at;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "id")
-    private User owner_id;
+    @JoinColumn(name = "owner_id")
+    private User owner;
 
-    @ManyToMany(mappedBy = "todos")
+    @ManyToMany(mappedBy = "toDoSet")
+    private Set<User> users;
+
+    @OneToMany(mappedBy = "todo")
     private List<Task> tasks;
 
     public ToDo() {
@@ -53,28 +56,40 @@ public class ToDo {
         return title;
     }
 
-    public LocalDateTime getCreated_at() {
+    public LocalDateTime getCreatedAt() {
         return created_at;
-    }
-
-    public User getOwner_id() {
-        return owner_id;
     }
 
     public List<Task> getTasks() {
         return tasks;
     }
 
+    public User getOwner() {
+        return owner;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
 
-    public void setCreated_at(LocalDateTime created_at) {
+    public void setCreatedAt(LocalDateTime created_at) {
         this.created_at = created_at;
     }
 
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 
     @Override
@@ -83,7 +98,7 @@ public class ToDo {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", created_at=" + created_at +
-                ", owner_id=" + owner_id +
+                ", owner_id=" + owner +
                 '}';
     }
 }
