@@ -10,7 +10,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
-
+@Entity
+@Table(name = "todos")
 public class ToDo {
 //TODO
 
@@ -37,6 +38,9 @@ public class ToDo {
     @JoinColumn(name = "id")
     private User owner_id;
 
+    @OneToMany(mappedBy = "todos")
+    private List<Task> tasks;
+
     public ToDo() {
     }
 
@@ -56,12 +60,20 @@ public class ToDo {
         return owner_id;
     }
 
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
 
     public void setCreated_at(LocalDateTime created_at) {
         this.created_at = created_at;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 
     @Override
