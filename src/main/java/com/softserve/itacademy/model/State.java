@@ -19,7 +19,7 @@ public class State {
             strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
             parameters = {
                     @Parameter(name = "sequence_name", value = "state_sequence"),
-                    @Parameter(name = "initial_value", value = "1"),
+                    @Parameter(name = "initial_value", value = "10"),
                     @Parameter(name = "increment_size", value = "1")
             }
     )
@@ -32,6 +32,9 @@ public class State {
 
     @OneToMany(mappedBy = "state")
     private List<Task> tasks;
+
+    public State() {
+    }
 
     public long getId() {
         return id;
