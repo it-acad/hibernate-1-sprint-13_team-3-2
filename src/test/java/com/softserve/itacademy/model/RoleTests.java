@@ -43,5 +43,14 @@ class RoleTests {
         Set<ConstraintViolation<Role>> violations = validator.validate(emptyRole);
         assertEquals(1, violations.size());
     }
+    @Test
+    void constraintViolationOnNullRoleName() {
+        Role nullRole = new Role();
+        nullRole.setName(null);
 
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+        Set<ConstraintViolation<Role>> violations = validator.validate(nullRole);
+        assertEquals(1, violations.size());
+    }
 }

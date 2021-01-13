@@ -79,13 +79,24 @@ public class ToDoTest {
     }
 
     @Test
-    void constraintViolationOnEmptyRoleName() {
+    void constraintViolationOnEmptyTitle() {
         ToDo emptyToDo = new ToDo();
         emptyToDo.setTitle("");
 
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
         Set<ConstraintViolation<ToDo>> violations = validator.validate(emptyToDo);
+        assertEquals(1, violations.size());
+    }
+
+    @Test
+    void constraintViolationOnNullTitle() {
+        ToDo nullToDo = new ToDo();
+        nullToDo.setTitle(null);
+
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+        Set<ConstraintViolation<ToDo>> violations = validator.validate(nullToDo);
         assertEquals(1, violations.size());
     }
 
