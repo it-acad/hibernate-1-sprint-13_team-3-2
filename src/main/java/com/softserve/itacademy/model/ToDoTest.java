@@ -78,6 +78,17 @@ public class ToDoTest {
         assertEquals(errorValue, violations.iterator().next().getInvalidValue());
     }
 
+    @Test
+    void constraintViolationOnEmptyRoleName() {
+        ToDo emptyToDo = new ToDo();
+        emptyToDo.setTitle("");
+
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
+        Set<ConstraintViolation<ToDo>> violations = validator.validate(emptyToDo);
+        assertEquals(1, violations.size());
+    }
+
     private static Stream<Arguments> provideInvalidTitleToDo(){
         return Stream.of(
                 Arguments.of("invalid", "invalid"),
