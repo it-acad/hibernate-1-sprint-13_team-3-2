@@ -43,7 +43,6 @@ public class User  {
 
     @NotBlank(message = "The password cannot be empty")
     @Column(nullable = false)
-    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$")
     private String password;
 
     @ManyToOne(optional = false)
@@ -51,7 +50,7 @@ public class User  {
     private Role role;
 
     @ManyToMany
-    @JoinTable(name = "todo_collabolator",
+    @JoinTable(name = "todo_collaborator",
             joinColumns = @JoinColumn(name = "collaborator_id"),
             inverseJoinColumns = @JoinColumn(name = "todo_id"))
     private Set<ToDo> toDoSet;

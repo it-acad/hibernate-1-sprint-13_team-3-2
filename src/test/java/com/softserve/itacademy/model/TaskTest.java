@@ -86,9 +86,9 @@ public class TaskTest {
     }
     private static Stream<Arguments> provideInvalidName(){
         return Stream.of(
-                Arguments.of("invalid", "invalid"),
+                Arguments.of(null, null),
                 Arguments.of("", ""),
-                Arguments.of("1", "20")
+                Arguments.of("1", "1")
         );
     }
 }

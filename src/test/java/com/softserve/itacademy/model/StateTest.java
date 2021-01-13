@@ -16,6 +16,7 @@ import javax.validation.ValidatorFactory;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -36,7 +37,7 @@ public class StateTest {
     }
 
     @Test
-    void RoleWithValidName(){
+    void StageWithValidName(){
         State state = new State();
         state.setName("Valid-Name");
 
@@ -45,16 +46,6 @@ public class StateTest {
         Set<ConstraintViolation<State>> violations = validator.validate(state);
 
         assertEquals(0, violations.size());
-    }
-    @Test
-    void constraintViolationOnEmptyStateName() {
-        State emptyState = new State();
-        emptyState.setName("");
-
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        Validator validator = factory.getValidator();
-        Set<ConstraintViolation<State>> violations = validator.validate(emptyState);
-        assertEquals(1, violations.size());
     }
     @Test
     void constraintViolationOnNullStateName() {
@@ -82,9 +73,9 @@ public class StateTest {
 
     private static Stream<Arguments> provideInvalidStateName(){
         return Stream.of(
-                Arguments.of("-", "-"),
-                Arguments.of("b", "b"),
-                Arguments.of("11", "11")
+                Arguments.of("фівфів", "фівфів"),
+                Arguments.of("*", "*"),
+                Arguments.of("qwertyuiopasdfghjklzxc", "qwertyuiopasdfghjklzxc")
         );
     }
 }
