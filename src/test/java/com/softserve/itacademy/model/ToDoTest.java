@@ -107,8 +107,8 @@ public class ToDoTest {
     private static Stream<Arguments> provideInvalidTitleToDo(){
         return Stream.of(
                 Arguments.of("invalid", "invalid"),
-                Arguments.of("Invalid-", "Invalid-"),
-                Arguments.of("Invalid-invalid", "Invalid-invalid")
+                Arguments.of(null,null),
+                Arguments.of("1","1")
         );
     }
 }
