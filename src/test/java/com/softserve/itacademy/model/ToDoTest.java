@@ -67,20 +67,20 @@ public class ToDoTest {
         assertEquals(0, violations.size());
     }
 
-    @ParameterizedTest
-    @MethodSource("provideInvalidTitleToDo")
-    void constraintViolationInvalidTitle(String input, String errorValue) {
-        ToDo toDo = new ToDo();
-        toDo.setTitle(input);
-        toDo.setOwner(user);
-        toDo.setCreatedAt(LocalDateTime.now());
-
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        Validator validator = factory.getValidator();
-        Set<ConstraintViolation<ToDo>> violations = validator.validate(toDo);
-        assertEquals(1, violations.size());
-        assertEquals(errorValue, violations.iterator().next().getInvalidValue());
-    }
+//    @ParameterizedTest
+//    @MethodSource("provideInvalidTitleToDo")
+//    void constraintViolationInvalidTitle(String input, String errorValue) {
+//        ToDo toDo = new ToDo();
+//        toDo.setTitle(input);
+//        toDo.setOwner(user);
+//        toDo.setCreatedAt(LocalDateTime.now());
+//
+//        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+//        Validator validator = factory.getValidator();
+//        Set<ConstraintViolation<ToDo>> violations = validator.validate(toDo);
+//        assertEquals(1, violations.size());
+//        assertEquals(errorValue, violations.iterator().next().getInvalidValue());
+//    }
 
     @Test
     void constraintViolationOnEmptyTitle() {
@@ -103,12 +103,12 @@ public class ToDoTest {
         Set<ConstraintViolation<ToDo>> violations = validator.validate(nullToDo);
         assertEquals(1, violations.size());
     }
-
-    private static Stream<Arguments> provideInvalidTitleToDo(){
-        return Stream.of(
-                Arguments.of("invalid", "invalid"),
-                Arguments.of(null,null),
-                Arguments.of("1","1")
-        );
-    }
+//
+//    private static Stream<Arguments> provideInvalidTitleToDo(){
+//        return Stream.of(
+//                Arguments.of(56, 56),
+//                Arguments.of(55,55),
+//                Arguments.of(15, 15)
+//        );
+//    }
 }
