@@ -16,6 +16,8 @@ import javax.validation.ValidatorFactory;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -36,6 +38,8 @@ public class ToDoTest {
         user.setLastName("Valid-Name");
         user.setPassword("qwQW12!@");
         user.setRole(traineeRole);
+        user.setToDoSet(new HashSet<>());
+        validToDo = new ToDo();
         validToDo.setOwner(user);
         validToDo.setTitle("Valid-Title");
         validToDo.setCreatedAt(LocalDateTime.now());

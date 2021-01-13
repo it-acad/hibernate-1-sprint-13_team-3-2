@@ -29,15 +29,16 @@ public class User  {
 
     @NotBlank(message = "The first_name cannot be empty")
     @Column(nullable = false)
-    @Pattern(regexp = "[A-Za-z\\d\\s-]")
+    @Pattern(regexp = "^[A-Z]+(([',.-][A-Z ])?[a-zA-Z]*)*$")
     private String first_name;
 
     @NotBlank(message = "The last_name cannot be empty")
     @Column(nullable = false)
-    @Pattern(regexp = "[A-Za-z\\d\\s-]")
+    @Pattern(regexp = "^[A-Z]+(([',.-][A-Z ])?[a-zA-Z]*)*$")
     private String last_name;
 
-    @Email(message = "The email cannot be empty", regexp = "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\\\.[a-zA-Z0-9-.]+$")
+    @NotBlank(message = "The email cannot be empty")
+    @Email
     @Column(nullable = false, unique = true)
     private String email;
 
